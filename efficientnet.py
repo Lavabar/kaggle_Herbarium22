@@ -138,6 +138,7 @@ def scale_width(w, w_factor):
 class EfficientNet(nn.Module):
   """Generic EfficientNet that takes in the width and depth scale factors and scales accordingly"""
   def __init__(self, w_factor=1, d_factor=1,
+               in_sz=3,
                out_sz=1000):
     super().__init__()
 
@@ -154,7 +155,7 @@ class EfficientNet(nn.Module):
     strides = [1, 2, 2, 2, 1, 2, 1]
     ps = [0, 0.029, 0.057, 0.086, 0.114, 0.143, 0.171]
 
-    self.stem = ConvBnAct(3, scaled_widths[0][0], stride=2, padding=1)
+    self.stem = ConvBnAct(in_sz, scaled_widths[0][0], stride=2, padding=1)
     
     stages = []
     for i in range(7):
@@ -184,49 +185,65 @@ class EfficientNet(nn.Module):
     return x
 
 class EfficientNetB0(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+              in_sz=3,
+               out_sz=1000):
     w_factor = 1
     d_factor = 1
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB1(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1
     d_factor = 1.1
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB2(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1.1
     d_factor = 1.2
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB3(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1.2
     d_factor = 1.4
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB4(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1.4
     d_factor = 1.8
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB5(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1.6
     d_factor = 2.2
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB6(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 1.8
     d_factor = 2.6
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
 
 class EfficientNetB7(EfficientNet):
-  def __init__(self, out_sz=1000):
+  def __init__(self,
+               in_sz=3,
+               out_sz=1000):
     w_factor = 2
     d_factor = 3.1
-    super().__init__(w_factor, d_factor, out_sz)
+    super().__init__(w_factor, d_factor, in_sz, out_sz)
